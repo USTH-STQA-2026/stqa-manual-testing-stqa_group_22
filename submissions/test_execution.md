@@ -78,5 +78,5 @@
 | Borrow Book | 6 | 3 | 3 | 50% |
 | Return Book | 2 | 2 | 0 | 100% |
 | Overdue Processing | 2 | 1 | 1 | 50% |
-| Member Management | 4 | 2 | 2 | 50% |
+| Member Management | 4 | 1 | 3 | 25% |
 | Borrow Record Lookup | 2 | 2 | 0 | 100% |
