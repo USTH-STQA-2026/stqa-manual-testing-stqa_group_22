@@ -8,28 +8,21 @@
 | **Group** | STQA Group 22 |
 | **Report Date** | 20/05/2026 |
 | **Source** | Test execution (20/05/2026) — https://stqa.rbc.vn |
+| **Detection Date** | 20/05/2026 |
+| **Status** | Open |
+| **Environment** | Chrome (latest version), Windows 11, Vietnamese UI — https://stqa.rbc.vn |
 
 ---
 
-## BUG-01
+## BUG-01: Member can borrow 4 books simultaneously instead of the maximum of 3 per SRS
 
 | **Attribute** | **Details** |
 |---|---|
-| **Bug ID** | BUG-02 |
+| **Bug ID** | BUG-01 |
 | **Related TC** | TC-19 |
 | **Related REQ** | REQ-04, BR-01 |
 | **Severity** | **High** — Allows borrowing beyond the business limit (3 books), easily causing inventory loss/mismanagement |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Member can borrow **4 books simultaneously** instead of the maximum of 3 per SRS
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Nguyễn Tú Oanh |
 
 **Preconditions:**
 - Logged in as Member or Librarian with borrow permission.
@@ -53,25 +46,15 @@
 
 ---
 
-## BUG-02
+## BUG-02: Book genre filter is case-sensitive, contradicting the case-insensitive search rule
 
 | **Attribute** | **Details** |
 |---|---|
-| **Bug ID** | BUG-03 |
+| **Bug ID** | BUG-02 |
 | **Related TC** | TC-14 |
 | **Related REQ** | REQ-03 |
 | **Severity** | **Medium** — Genre filter is inconsistent with keyword search; users entering the correct genre name in the wrong case see no results |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Book genre filter is **case-sensitive**, contradicting the case-insensitive search rule
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Nguyễn Minh Đức |
 
 **Preconditions:**
 - Logged in (Librarian or Member).
@@ -98,25 +81,15 @@
 
 ---
 
-## BUG-03
+## BUG-03: Borrow rejection displays the same "expired" message for both Suspended and Expired members
 
 | **Attribute** | **Details** |
 |---|---|
-| **Bug ID** | BUG-04 |
+| **Bug ID** | BUG-03 |
 | **Related TC** | TC-17, TC-18 |
 | **Related REQ** | REQ-04 |
 | **Severity** | **Medium** — Incorrect and misleading error messages for member status; impacts operations and user support |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Borrow rejection displays the **same "expired" message** for both **Suspended** and **Expired** members
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Phạm Vũ Khánh |
 
 **Preconditions:**
 - Logged in as Librarian: librarian@library.com / admin123.
@@ -149,25 +122,15 @@
 
 ---
 
-## BUG-04
+## BUG-04: Check Overdue does not flag records with dueDate equal to today; second run reports 0 records
 
 | **Attribute** | **Details** |
 |---|---|
-| **Bug ID** | BUG-06 |
+| **Bug ID** | BUG-04 |
 | **Related TC** | TC-23 |
 | **Related REQ** | REQ-06 |
 | **Severity** | **High** — Boundary date logic error causes records due **exactly today** to not be marked overdue; running the check a second time reports 0 records despite overdue records still existing |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** **Check Overdue** does not flag records with dueDate **equal to today**; second run reports **0 records** after first run updated **1 record**
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Nguyễn Chí Kiên |
 
 **Preconditions:**
 - Logged in as Librarian.
@@ -196,25 +159,15 @@
 
 ---
 
-## BUG-05
+## BUG-05: Add Member form handles email incorrectly — rejects valid email, accepts email missing dot, reports duplicates as "Invalid email"
 
 | **Attribute** | **Details** |
 |---|---|
-| **Bug ID** | BUG-07 |
+| **Bug ID** | BUG-05 |
 | **Related TC** | TC-25, TC-26, TC-27 |
 | **Related REQ** | REQ-07, BR-08 |
 | **Severity** | **High** — Inconsistent email validation: rejects valid data, accepts malformed emails, and uses misleading error messages for duplicates |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** **Add Member** form handles email incorrectly per SRS: rejects valid email, accepts email missing `.`, and reports duplicates as *"Invalid email"*
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Đào Trung Hiếu |
 
 **Preconditions:**
 - Logged in as Librarian: librarian@library.com / admin123.
@@ -261,25 +214,15 @@
 
 ---
 
-## BUG-06
+## BUG-06: Combined search + filter ignores genre filter when keyword matches books outside the selected category
 
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-06 |
-| **Related TC** | TC-38 |
+| **Related TC** | TC-37 |
 | **Related REQ** | REQ-03 |
-| **Severity** | **Medium** — Combined search + filter behaves inconsistently; the genre filter is silently ignored when keyword matches books outside the selected category |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Combined search + filter ignores genre filter when keyword matches books **outside** the selected category
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Severity** | **Medium** — Genre filter is silently ignored when keyword matches books outside the selected category; results mislead users |
+| **Detected By** | Nguyễn Minh Đức |
 
 **Preconditions:**
 - Logged in (Librarian or Member).
@@ -304,25 +247,15 @@
 
 ---
 
-## BUG-07
+## BUG-07: Returning an overdue book completes silently — no overdue warning or notification is displayed
 
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-07 |
-| **Related TC** | TC-39 |
+| **Related TC** | TC-38 |
 | **Related REQ** | REQ-05 |
 | **Severity** | **High** — Overdue books are returned silently with no warning; librarians and members have no visibility into late returns, undermining fine and reminder workflows |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Returning an overdue book completes **silently** — no overdue warning or notification is displayed
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Phạm Vũ Khánh |
 
 **Preconditions:**
 - Logged in as Librarian: librarian@library.com / admin123.
@@ -346,25 +279,15 @@
 
 ---
 
-## BUG-08
+## BUG-08: Member can search and view another member's borrow records and return books on their behalf — unauthorized access
 
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-08 |
-| **Related TC** | TC-40 |
+| **Related TC** | TC-39 |
 | **Related REQ** | REQ-08 |
 | **Severity** | **Critical** — A Member can view borrow records of any other member and perform return actions on their behalf — full access control breach |
-| **Detected By** | STQA Group 22 |
-| **Detection Date** | 20/05/2026 |
-| **Status** | Open |
-
-**Title:** Member can **search and view another member's borrow records** and **return books on their behalf** — unauthorized access
-
-**Environment:**
-- Browser: Chrome (latest version)
-- OS: Windows 11
-- UI Language: Vietnamese
-- App: https://stqa.rbc.vn
+| **Detected By** | Đào Trung Hiếu |
 
 **Preconditions:**
 - Logged in as Member MEM002 (ba.nguyen@email.com / password123).
