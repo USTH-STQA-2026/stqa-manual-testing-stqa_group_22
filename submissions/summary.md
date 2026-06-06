@@ -19,8 +19,8 @@
 
 | **Metric** | **Value** |
 |---|---|
-| Total test cases | **40** |
-| Pass | **30** |
+| Total test cases | **39** |
+| Pass | **29** |
 | Fail | **10** |
 | Blocked | **0** |
 | Not Run | **0** |
@@ -35,7 +35,7 @@
 | REQ-02 View Book List | 2 | 2 | 0 | 100% | — |
 | REQ-03 Search & Filter | 7 | 5 | 2 | 71.4% | BUG-03, BUG-06 |
 | REQ-04 Borrow Book | 7 | 4 | 3 | 57.1% | BUG-02, BUG-04 |
-| REQ-05 Return Book | 4 | 3 | 1 | 75% | BUG-07 |
+| REQ-05 Return Book | 3 | 2 | 1 | 66.7% | BUG-07 |
 | REQ-06 Overdue Processing | 4 | 3 | 1 | 75% | BUG-06 (TC-23) |
 | REQ-07 Member Management | 4 | 1 | 3 | 25% | BUG-07 (email) |
 | REQ-08 Borrow Record Lookup | 4 | 3 | 1 | 75% | BUG-08 |

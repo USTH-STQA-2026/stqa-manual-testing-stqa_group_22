@@ -54,13 +54,12 @@
 | TC-31 | Login | Only email empty → rejected with message | Shows "Please enter email and password". Page does not change. | **Pass** | | |
 | TC-32 | Search | Clear search → all 20 books restored | All 20 books reappear after clearing the search box | **Pass** | | |
 | TC-33 | Borrow | Borrow at BVA boundary (2nd active borrow) | Borrow succeeds; member now has 2 active borrows, within the 3-book limit | **Pass** | | |
-| TC-34 | Return | Member cannot return another member's book | BR003 (MEM006) is not accessible to MEM003; no return action available | **Pass** | | |
-| TC-35 | Overdue | Record with dueDate = tomorrow stays "Borrowed" | Record with future due date remains "Borrowed" after Check Overdue | **Pass** | | |
-| TC-36 | Overdue | Librarian sees ALL overdue records across members | Librarian sees all overdue records for all members after Check Overdue | **Pass** | | |
-| TC-37 | Record Lookup | Returned record shows correct status + all fields | Returned record shows "Returned" with Record ID, Book, Borrow Date, Due Date | **Pass** | | |
-| TC-38 | Search | Search + filter: keyword not in category → no result | System ignores the genre filter and shows results from all genres containing the keyword | **Fail** | | **BUG-06** |
-| TC-39 | Return | Return overdue book → overdue warning shown | Return completes silently with no overdue warning or notification displayed | **Fail** | | **BUG-07** |
-| TC-40 | Record Lookup | Member cannot view/return another member's records | MEM002 can search MEM006's ID and see MEM006's records; Return button is accessible | **Fail** | | **BUG-08** |
+| TC-34 | Overdue | Record with dueDate = tomorrow stays "Borrowed" | Record with future due date remains "Borrowed" after Check Overdue | **Pass** | | |
+| TC-35 | Overdue | Librarian sees ALL overdue records across members | Librarian sees all overdue records for all members after Check Overdue | **Pass** | | |
+| TC-36 | Record Lookup | Returned record shows correct status + all fields | Returned record shows "Returned" with Record ID, Book, Borrow Date, Due Date | **Pass** | | |
+| TC-37 | Search | Search + filter: keyword not in category → no result | System ignores the genre filter and shows results from all genres containing the keyword | **Fail** | | **BUG-06** |
+| TC-38 | Return | Return overdue book → overdue warning shown | Return completes silently with no overdue warning or notification displayed | **Fail** | | **BUG-07** |
+| TC-39 | Record Lookup | Member cannot view/return another member's records | MEM002 can search MEM006's ID and see MEM006's records; Return button is accessible | **Fail** | | **BUG-08** |
 
 ---
 
@@ -68,8 +67,8 @@
 
 | **Metric** | **Value** |
 |---|---|
-| **Total Test Cases** | 40 |
-| **Pass** | 30 |
+| **Total Test Cases** | 39 |
+| **Pass** | 29 |
 | **Fail** | 10 |
 | **Blocked** | 0 |
 | **Not Run** | 0 |
@@ -86,7 +85,7 @@
 | View Book List | 2 | 2 | 0 | 100% |
 | Search & Filter | 7 | 5 | 2 | 71.4% |
 | Borrow Book | 7 | 4 | 3 | 57.1% |
-| Return Book | 4 | 3 | 1 | 75% |
+| Return Book | 3 | 2 | 1 | 66.7% |
 | Overdue Processing | 4 | 3 | 1 | 75% |
 | Member Management | 4 | 1 | 3 | 25% |
 | Borrow Record Lookup | 4 | 3 | 1 | 75% |
