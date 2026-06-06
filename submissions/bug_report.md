@@ -258,3 +258,131 @@
 - Validate email against the SRS regex (`local@domain.tld`, must include `.` in the domain part).
 - Separate error codes and messages: `DUPLICATE_EMAIL` vs `INVALID_EMAIL_FORMAT`.
 - Ensure TC-25 / TC-26 / TC-27 all pass after the fix (happy path + reject invalid + reject duplicate).
+
+---
+
+## BUG-06
+
+| **Attribute** | **Details** |
+|---|---|
+| **Bug ID** | BUG-06 |
+| **Related TC** | TC-38 |
+| **Related REQ** | REQ-03 |
+| **Severity** | **Medium** — Combined search + filter behaves inconsistently; the genre filter is silently ignored when keyword matches books outside the selected category |
+| **Detected By** | STQA Group 22 |
+| **Detection Date** | 20/05/2026 |
+| **Status** | Open |
+
+**Title:** Combined search + filter ignores genre filter when keyword matches books **outside** the selected category
+
+**Environment:**
+- Browser: Chrome (latest version)
+- OS: Windows 11
+- UI Language: Vietnamese
+- App: https://stqa.rbc.vn
+
+**Preconditions:**
+- Logged in (Librarian or Member).
+- **Books** tab is open.
+- Genre filter set to **"Technology"**; keyword searched is **"Nguyen Van An"** (an author whose books are in Literature, not Technology).
+
+**Reproduction Steps:**
+1. In **Books** tab, select genre filter **"Technology"**.
+2. Confirm only Technology books appear.
+3. Enter keyword **"Nguyen Van An"** (author with no books in Technology) in the search box and press search.
+4. Observe the results.
+
+**Expected Result:** Per **REQ-03**: when both search keyword and genre filter are active, results must satisfy **both** conditions (AND logic). Since "Nguyen Van An" has no books in Technology, the system should show **"No books found"** or an empty list.
+
+**Actual Result:** The system **ignores the genre filter** and displays all books by "Nguyen Van An" regardless of genre. The filter is silently dropped, giving the user misleading results that do not match the active category.
+
+**Impact:** Users searching within a specific genre receive results outside that genre without any indication the filter was bypassed — leading to confusion and incorrect book discovery.
+
+**Evidence:** *(attach screenshots)*
+
+**Suggested Fix:** Ensure the search query applies both the keyword filter and the genre filter simultaneously (SQL: `WHERE genre = ? AND (title LIKE ? OR author LIKE ?)`). If no results satisfy both, return "No books found" rather than relaxing the genre constraint.
+
+---
+
+## BUG-07
+
+| **Attribute** | **Details** |
+|---|---|
+| **Bug ID** | BUG-07 |
+| **Related TC** | TC-39 |
+| **Related REQ** | REQ-05 |
+| **Severity** | **High** — Overdue books are returned silently with no warning; librarians and members have no visibility into late returns, undermining fine and reminder workflows |
+| **Detected By** | STQA Group 22 |
+| **Detection Date** | 20/05/2026 |
+| **Status** | Open |
+
+**Title:** Returning an overdue book completes **silently** — no overdue warning or notification is displayed
+
+**Environment:**
+- Browser: Chrome (latest version)
+- OS: Windows 11
+- UI Language: Vietnamese
+- App: https://stqa.rbc.vn
+
+**Preconditions:**
+- Logged in as Librarian: librarian@library.com / admin123.
+- "Check Overdue" has been run — BR001 (MEM002, BOOK003) has status **"Overdue"**.
+
+**Reproduction Steps:**
+1. In **Borrow/Return** tab, locate record BR001 (status "Overdue").
+2. Click **Return** on BR001.
+3. Confirm the return action.
+4. Observe the system response — look for any warning, alert, or message about the overdue status.
+
+**Expected Result:** Per **REQ-05**: when a member returns an overdue book, the system must display an overdue warning (e.g., *"This book was returned overdue — please apply the applicable late fee."*). The record status changes to "Returned" **and** the warning is shown.
+
+**Actual Result:** The return completes successfully and the record changes to "Returned", but **no overdue warning is displayed**. The overdue condition is silently ignored. There is no indication to the librarian or member that the return was late.
+
+**Impact:** Library staff have no in-system signal for late returns. Overdue fines or follow-up actions cannot be triggered from this workflow, leading to untracked late returns and potential revenue loss.
+
+**Evidence:** *(attach screenshots)*
+
+**Suggested Fix:** After a successful return, check if the record's `dueDate < returnDate`; if true, display an overdue warning before closing the return dialog. Optionally log the overdue event for reporting.
+
+---
+
+## BUG-08
+
+| **Attribute** | **Details** |
+|---|---|
+| **Bug ID** | BUG-08 |
+| **Related TC** | TC-40 |
+| **Related REQ** | REQ-08 |
+| **Severity** | **Critical** — A Member can view borrow records of any other member and perform return actions on their behalf — full access control breach |
+| **Detected By** | STQA Group 22 |
+| **Detection Date** | 20/05/2026 |
+| **Status** | Open |
+
+**Title:** Member can **search and view another member's borrow records** and **return books on their behalf** — unauthorized access
+
+**Environment:**
+- Browser: Chrome (latest version)
+- OS: Windows 11
+- UI Language: Vietnamese
+- App: https://stqa.rbc.vn
+
+**Preconditions:**
+- Logged in as Member MEM002 (ba.nguyen@email.com / password123).
+- MEM006 (biet.hoang@email.com) has at least one active borrow record (e.g., BR003 — BOOK013).
+
+**Reproduction Steps:**
+1. Log in as **MEM002** (ba.nguyen@email.com).
+2. Open the **Borrow/Return** tab.
+3. In the member search/lookup field, enter **MEM006** (or biet.hoang@email.com).
+4. Observe whether MEM006's borrow records appear.
+5. If records are visible, attempt to click **Return** on one of MEM006's records.
+
+**Expected Result:** Per **REQ-08**: a Member may only view and act on **their own** borrow records. Searching for another member's ID must return **empty results** or display an access-denied message. The Return button must not be available for another member's records.
+
+**Actual Result:** MEM002 **can search for MEM006's ID** and the system displays MEM006's full borrow history. Furthermore, MEM002 can **click Return** on MEM006's active record (BR003), successfully returning a book on behalf of another member — without any authorization check.
+
+**Impact:** Any authenticated member can view the borrowing history of all other members (privacy breach) and perform return actions on their behalf (data integrity breach). This is the most severe defect in the system — it bypasses all access control for borrowing record management.
+
+**Evidence:** *(attach screenshots)*
+
+**Suggested Fix:** On all borrow record queries from a Member session, enforce a server-side filter: `WHERE member_id = session.user_id`. Never expose or allow actions on records belonging to a different member ID, regardless of the search input. The fix must be applied server-side — client-side filtering alone is insufficient.

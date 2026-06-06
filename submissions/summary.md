@@ -19,26 +19,26 @@
 
 | **Metric** | **Value** |
 |---|---|
-| Total test cases | **30** |
-| Pass | **23** |
-| Fail | **7** |
+| Total test cases | **40** |
+| Pass | **30** |
+| Fail | **10** |
 | Blocked | **0** |
 | Not Run | **0** |
-| **Pass Rate** | **76.7%** |
-| **Bugs Recorded** | **6** |
+| **Pass Rate** | **75.0%** |
+| **Bugs Recorded** | **8** |
 
 ### 2.1. Results by Requirement
 
 | **Feature Group** | **Total TCs** | **Pass** | **Fail** | **Pass Rate** | **Related Bugs** |
 |---|---|---|---|---|---|
-| REQ-01 Login | 7 | 7 | 0 | 100% | — |
+| REQ-01 Login | 8 | 8 | 0 | 100% | — |
 | REQ-02 View Book List | 2 | 2 | 0 | 100% | — |
-| REQ-03 Search & Filter | 5 | 4 | 1 | 80% | BUG-03 |
-| REQ-04 Borrow Book | 6 | 3 | 3 | 50% | BUG-02, BUG-04 |
-| REQ-05 Return Book | 2 | 2 | 0 | 100% | — |
-| REQ-06 Overdue Processing | 2 | 1 | 1 | 50% | BUG-06 |
-| REQ-07 Member Management | 4 | 2 | 2 | 50% | BUG-07 |
-| REQ-08 Borrow Record Lookup | 2 | 2 | 0 | 100% | — |
+| REQ-03 Search & Filter | 7 | 5 | 2 | 71.4% | BUG-03, BUG-06 |
+| REQ-04 Borrow Book | 7 | 4 | 3 | 57.1% | BUG-02, BUG-04 |
+| REQ-05 Return Book | 4 | 3 | 1 | 75% | BUG-07 |
+| REQ-06 Overdue Processing | 4 | 3 | 1 | 75% | BUG-06 (TC-23) |
+| REQ-07 Member Management | 4 | 1 | 3 | 25% | BUG-07 (email) |
+| REQ-08 Borrow Record Lookup | 4 | 3 | 1 | 75% | BUG-08 |
 
 ### 2.2. Failed TC → Bug Mapping
 
@@ -48,9 +48,12 @@
 | TC-17 | **Suspended** member receives "expired" error message instead of "suspended" | BUG-04 |
 | TC-18 | **Expired** member shares the same error message template as "suspended" | BUG-04 |
 | TC-19 | System allows borrowing a **4th book** (exceeds 3-book limit) | BUG-02 |
-| TC-23 | Overdue check is unstable + boundary date error | BUG-06 |
-| TC-26 | Invalid email (tay.tran@emailcom) is still accepted for new member creation | BUG-07 |
-| TC-27 | Duplicate email only shows "Invalid email" message | BUG-07 |
+| TC-23 | Overdue check is unstable + boundary date error | BUG-06 (overdue) |
+| TC-26 | Invalid email (tay.tran@emailcom) is still accepted for new member creation | BUG-07 (email) |
+| TC-27 | Duplicate email only shows "Invalid email" message | BUG-07 (email) |
+| TC-38 | Combined search + filter ignores genre filter; keyword matches books outside selected category | BUG-06 |
+| TC-39 | Return overdue book completes silently — no overdue warning displayed | BUG-07 |
+| TC-40 | Member MEM002 can view and return MEM006's borrow records — unauthorized access | BUG-08 |
 
 > **Note:** **BUG-07** also records abnormal behavior on the valid member addition flow (TC-25) as per the bug report.
 
@@ -58,8 +61,9 @@
 
 | **Severity** | **Count** | **Bug IDs** |
 |---|---|---|
-| High | 3 | BUG-02, BUG-06, BUG-07 |
-| Medium | 2 | BUG-03, BUG-04 |
+| Critical | 1 | BUG-08 |
+| High | 4 | BUG-02, BUG-06 (overdue), BUG-07 (email), BUG-07 (return) |
+| Medium | 2 | BUG-03, BUG-04, BUG-06 (search+filter) |
 | Low | 0 | — |
 
 ---
@@ -85,9 +89,11 @@
 
 ### 4.2. Key Risks
 
+- **Access control breach (Critical):** A Member can view and return borrow records of other members, violating data privacy and integrity (REQ-08 — BUG-08).
 - **Borrow flow has critical defects:** exceeds the 3-book limit; member status error messages are incorrect (REQ-04).
-- **Overdue processing is unreliable:** boundary date error + inconsistent update results across runs (REQ-06).
+- **Overdue processing is unreliable:** boundary date error + inconsistent update results across runs; no overdue warning on return (REQ-06, REQ-05).
 - **Member management validation is inconsistent:** accepts invalid email formats and error messages do not reflect the actual cause (REQ-07).
+- **Search + filter combination is broken:** genre filter is silently ignored when keyword matches books outside the selected category (REQ-03).
 
 ---
 
@@ -95,23 +101,29 @@
 
 | **Priority** | **Bug** | **Reason** |
 |---|---|---|
+| P1 | BUG-08 | Critical access control breach — member can view and act on other members' private data |
 | P1 | BUG-02 | Violates core business constraint (max 3 books per member) |
-| P1 | BUG-07 | Risk of corrupt member data + blocks valid data entry / makes deduplication difficult |
-| P1 | BUG-06 | Directly impacts overdue business logic, reminders, and fines |
+| P1 | BUG-07 (email) | Risk of corrupt member data + blocks valid data entry / makes deduplication difficult |
+| P1 | BUG-06 (overdue) | Directly impacts overdue business logic, reminders, and fines |
+| P2 | BUG-07 (return) | Silent overdue return — no warning; librarians cannot track late fees |
 | P2 | BUG-04 | Causes misunderstanding of rejection reason, impacts operational support |
-| P2 | BUG-03 | Inconsistent UX between filter and search (correct input but wrong case yields no results) |
+| P2 | BUG-06 (search+filter) | Filter silently ignored; misleading search results for users |
+| P3 | BUG-03 | Inconsistent UX between filter and search (correct input but wrong case yields no results) |
 
 ---
 
 ## 6. Release Conclusion
 
-The system **should not be released** in its current state. Although the overall pass rate is **76.7%**, high-severity bugs are concentrated in critical business functions (REQ-04, REQ-06, REQ-07), reducing operational reliability.
+The system **should not be released** in its current state. Although the overall pass rate is **75.0%**, a **Critical** access control breach (BUG-08) allows any authenticated member to view and return other members' borrow records — a fundamental security failure. Additionally, high-severity bugs are concentrated in critical business functions (REQ-04, REQ-05, REQ-06, REQ-07), further reducing operational reliability.
 
 After fixing P1 bugs, a minimum regression run is required for:
 
+- REQ-03: TC-38 (search + filter combo)
 - REQ-04: TC-15 → TC-20
+- REQ-05: TC-39 (overdue return warning)
 - REQ-06: TC-23, TC-24
 - REQ-07: TC-25 → TC-28
+- REQ-08: TC-40 (cross-member access control)
 
 ---
 
