@@ -202,3 +202,4 @@
 | Member Management | 4 | REQ-07 | EP, BVA |
 | Borrow Record Lookup | 4 | REQ-08 | EP |
 | **Total** | **39** | **REQ-01 → REQ-08** | **EP, BVA, Decision Table** |
+ 

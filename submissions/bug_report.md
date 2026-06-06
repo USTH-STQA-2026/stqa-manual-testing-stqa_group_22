@@ -292,7 +292,7 @@
 **Preconditions:**
 - Logged in as Member MEM002 (ba.nguyen@email.com / password123).
 - MEM006 (biet.hoang@email.com) has at least one active borrow record (e.g., BR003 — BOOK013).
-
+ 
 **Reproduction Steps:**
 1. Log in as **MEM002** (ba.nguyen@email.com).
 2. Open the **Borrow/Return** tab.
