@@ -19,13 +19,13 @@
 
 | **Chỉ số** | **Giá trị** |
 |---|---|
-| Tổng số TC | **39** |
-| Đạt | **29** |
+| Tổng số TC | **38** |
+| Đạt | **28** |
 | Không đạt | **10** |
 | Bị chặn | **0** |
 | Chưa chạy | **0** |
-| **Tỷ lệ đạt** | **75.0%** |
-| **Số lỗi đã ghi nhận** | **8** |
+| **Tỷ lệ đạt** | **73.7%** |
+| **Số lỗi đã ghi nhận** | **7** |
 
 ### 2.1. Kết quả theo từng yêu cầu
 
@@ -36,7 +36,7 @@
 | REQ-03 Tìm kiếm & lọc | 7 | 5 | 2 | 71.4% | BUG-03, BUG-06 |
 | REQ-04 Mượn sách | 7 | 4 | 3 | 57.1% | BUG-02, BUG-04 |
 | REQ-05 Trả sách | 3 | 2 | 1 | 66.7% | BUG-07 |
-| REQ-06 Xử lý quá hạn | 4 | 3 | 1 | 75% | BUG-06 (TC-23) |
+| REQ-06 Xử lý quá hạn | 3 | 2 | 1 | 66.7% | BUG-06 (TC-23) |
 | REQ-07 Quản lý thành viên | 4 | 1 | 3 | 25% | BUG-07 (email) |
 | REQ-08 Tra cứu bản ghi mượn | 4 | 3 | 1 | 75% | BUG-08 |
 
@@ -51,7 +51,7 @@
 | TC-23 | Kiểm tra quá hạn không ổn định + lỗi logic ở mốc ngày biên | BUG-06 (quá hạn) |
 | TC-26 | Email không hợp lệ (tay.tran@emailcom) vẫn được chấp nhận khi tạo thành viên mới | BUG-07 (email) |
 | TC-27 | Email trùng chỉ hiển thị thông báo "Invalid email" | BUG-07 (email) |
-| TC-38 | Tìm kiếm + lọc kết hợp bỏ qua bộ lọc thể loại; từ khóa khớp với sách ngoài danh mục đã chọn | BUG-06 |
+| TC-38 | Trả sách quá hạn hoàn tất lặng lẽ — được đánh dấu 'Dev chưa tạo ra' (không phải bug) | Dev chưa tạo ra |
 | TC-39 | Trả sách quá hạn hoàn tất lặng lẽ — không hiển thị cảnh báo quá hạn | BUG-07 |
 | TC-40 | Member MEM002 có thể xem và trả bản ghi mượn của MEM006 — truy cập trái phép | BUG-08 |
 

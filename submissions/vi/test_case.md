@@ -166,7 +166,7 @@
 |---|---|---|---|---|---|---|
 | TC-23 | Librarian kiểm tra và đánh dấu các bản ghi quá hạn | Đã đăng nhập bằng Librarian, BR001 có dueDate 15/09/2024 ≤ hôm nay | 1. Vào tab **Borrow/Return**. 2. Bấm **Check Overdue**. 3. Tra cứu bản ghi BR001. | Bản ghi: BR001 (MEM002, BOOK003) | BR001 đổi trạng thái sang **"Overdue"**. Librarian thấy bản ghi trong danh sách quá hạn. | EP, BVA |
 | TC-24 | Member xem bản ghi quá hạn của chính mình | Librarian đã chạy "Check Overdue", BR001 thuộc MEM002 | 1. Đăng nhập bằng ba.nguyen@email.com. 2. Vào tab **Borrow/Return** → bản ghi của tôi. 3. Quan sát BR001. | Tài khoản: MEM002 | MEM002 thấy BR001 với trạng thái **"Overdue"**. Không thể xem bản ghi của thành viên khác. | EP |
-| TC-34 | Bản ghi có dueDate = ngày mai vẫn giữ "Borrowed" sau khi kiểm tra quá hạn | Đã đăng nhập bằng Librarian; có bản ghi với dueDate = hôm nay + 1 | 1. Vào tab **Borrow/Return**. 2. Bấm **Check Overdue**. 3. Tìm bản ghi có dueDate là ngày mai. 4. Quan sát trạng thái. | Bản ghi: bất kỳ bản ghi nào có dueDate = ngày mai | Trạng thái bản ghi vẫn là **"Borrowed"** — KHÔNG đổi sang "Overdue". Chỉ những bản ghi quá hạn mới bị ảnh hưởng. | BVA |
+-- removed TC-34 --
 | TC-35 | Librarian xem tất cả bản ghi quá hạn của mọi thành viên | Đã đăng nhập bằng Librarian, Check Overdue đã chạy (BR001 là Overdue) | 1. Vào tab **Borrow/Return**. 2. Quan sát danh sách bản ghi quá hạn hoặc tìm kiếm tất cả thành viên. 3. Xác nhận bản ghi của nhiều thành viên xuất hiện. | Tài khoản: librarian@library.com | Librarian xem được bản ghi quá hạn của **tất cả thành viên** (ví dụ: của MEM002 và các thành viên khác). Không bị giới hạn trong một member. | EP |
 
 ### REQ-07 — Quản lý thành viên
@@ -198,7 +198,7 @@
 | Tìm kiếm & lọc sách | 7 | REQ-03 | EP |
 | Mượn sách | 7 | REQ-04 | EP, BVA, Bảng quyết định |
 | Trả sách | 3 | REQ-05 | EP |
-| Xử lý quá hạn | 4 | REQ-06 | EP, BVA |
+| Xử lý quá hạn | 3 | REQ-06 | EP, BVA |
 | Quản lý thành viên | 4 | REQ-07 | EP, BVA |
 | Tra cứu bản ghi mượn | 4 | REQ-08 | EP |
-| **Tổng** | **39** | **REQ-01 → REQ-08** | **EP, BVA, Bảng quyết định** |
+| **Tổng** | **38** | **REQ-01 → REQ-08** | **EP, BVA, Bảng quyết định** |

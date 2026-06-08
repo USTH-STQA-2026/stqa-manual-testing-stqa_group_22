@@ -166,7 +166,7 @@
 |---|---|---|---|---|---|---|
 | TC-23 | Librarian checks and marks overdue records | Logged in as Librarian, BR001 has dueDate 15/09/2024 ≤ today | 1. **Borrow/Return** tab. 2. Click **Check Overdue**. 3. Look up record BR001. | Record: BR001 (MEM002, BOOK003) | BR001 changes status to **"Overdue"**. Librarian sees it in overdue list. | EP, BVA |
 | TC-24 | Member views own overdue record | Librarian ran "Check Overdue", BR001 belongs to MEM002 | 1. Log in as ba.nguyen@email.com. 2. **Borrow/Return** tab → my records. 3. Observe BR001. | Account: MEM002 | MEM002 sees BR001 with status **"Overdue"**. Cannot see other members' records. | EP |
-| TC-34 | Record with dueDate = tomorrow remains "Borrowed" after overdue check | Logged in as Librarian; a borrow record exists with dueDate = today + 1 | 1. **Borrow/Return** tab. 2. Click **Check Overdue**. 3. Find the record with dueDate tomorrow. 4. Observe its status. | Record: any with dueDate = tomorrow | Record status remains **"Borrowed"** — NOT changed to "Overdue". Only past-due records are affected. | BVA |
+-- removed TC-34 --
 | TC-35 | Librarian sees all overdue records across all members | Logged in as Librarian, Check Overdue already run (BR001 is Overdue) | 1. **Borrow/Return** tab. 2. Observe overdue record list or search all members. 3. Confirm records from multiple members appear. | Account: librarian@library.com | Librarian sees overdue records for **all members** (e.g., MEM002's and any other member's overdue records). Not limited to one member. | EP |
 
 ### REQ-07 — Member Management

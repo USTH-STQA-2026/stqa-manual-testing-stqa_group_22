@@ -19,13 +19,13 @@
 
 | **Metric** | **Value** |
 |---|---|
-| Total test cases | **39** |
-| Pass | **29** |
+| Total test cases | **38** |
+| Pass | **28** |
 | Fail | **10** |
 | Blocked | **0** |
 | Not Run | **0** |
-| **Pass Rate** | **75.0%** |
-| **Bugs Recorded** | **8** |
+| **Pass Rate** | **73.7%** |
+| **Bugs Recorded** | **7** |
 
 ### 2.1. Results by Requirement
 
@@ -36,7 +36,7 @@
 | REQ-03 Search & Filter | 7 | 5 | 2 | 71.4% | BUG-03, BUG-06 |
 | REQ-04 Borrow Book | 7 | 4 | 3 | 57.1% | BUG-02, BUG-04 |
 | REQ-05 Return Book | 3 | 2 | 1 | 66.7% | BUG-07 |
-| REQ-06 Overdue Processing | 4 | 3 | 1 | 75% | BUG-06 (TC-23) |
+| REQ-06 Overdue Processing | 3 | 2 | 1 | 66.7% | BUG-06 (TC-23) |
 | REQ-07 Member Management | 4 | 1 | 3 | 25% | BUG-07 (email) |
 | REQ-08 Borrow Record Lookup | 4 | 3 | 1 | 75% | BUG-08 |
 
@@ -51,7 +51,7 @@
 | TC-23 | Overdue check is unstable + boundary date error | BUG-06 (overdue) |
 | TC-26 | Invalid email (tay.tran@emailcom) is still accepted for new member creation | BUG-07 (email) |
 | TC-27 | Duplicate email only shows "Invalid email" message | BUG-07 (email) |
-| TC-38 | Combined search + filter ignores genre filter; keyword matches books outside selected category | BUG-06 |
+| TC-38 | Return overdue book completes silently — marked as 'Dev chưa tạo ra' (not a bug) | Dev chưa tạo ra |
 | TC-39 | Return overdue book completes silently — no overdue warning displayed | BUG-07 |
 | TC-40 | Member MEM002 can view and return MEM006's borrow records — unauthorized access | BUG-08 |
 

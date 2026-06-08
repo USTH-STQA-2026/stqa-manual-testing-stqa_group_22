@@ -54,11 +54,10 @@
 | TC-31 | Đăng nhập | Chỉ trống email → bị từ chối kèm thông báo | Hiển thị "Please enter email and password". Trang không thay đổi. | **Đạt** | | |
 | TC-32 | Tìm kiếm | Xóa tìm kiếm → khôi phục lại toàn bộ 20 sách | Toàn bộ 20 sách hiển thị lại sau khi xóa ô tìm kiếm | **Đạt** | | |
 | TC-33 | Mượn sách | Mượn tại ngưỡng BVA (lần mượn thứ 2) | Mượn thành công; thành viên hiện có 2 lượt mượn đang hoạt động, vẫn trong giới hạn 3 sách | **Đạt** | | |
-| TC-34 | Xử lý quá hạn | Bản ghi có dueDate = ngày mai vẫn là "Borrowed" | Bản ghi có hạn trong tương lai vẫn ở trạng thái "Borrowed" sau khi Check Overdue | **Đạt** | | |
 | TC-35 | Xử lý quá hạn | Librarian xem TẤT CẢ bản ghi quá hạn của mọi thành viên | Librarian xem được toàn bộ bản ghi quá hạn của mọi thành viên sau khi Check Overdue | **Đạt** | | |
 | TC-36 | Tra cứu bản ghi | Bản ghi đã trả hiển thị đúng trạng thái + đầy đủ trường | Bản ghi đã trả hiển thị "Returned" với Record ID, Book, Borrow Date, Due Date | **Đạt** | | |
 | TC-37 | Tìm kiếm | Tìm kiếm + bộ lọc: từ khóa không nằm trong danh mục → không có kết quả | Hệ thống bỏ qua bộ lọc thể loại và hiển thị kết quả từ mọi thể loại có chứa từ khóa | **Không đạt** | | **BUG-06** |
-| TC-38 | Trả sách | Trả sách quá hạn → hiển thị cảnh báo quá hạn | Trả sách hoàn tất lặng lẽ, không có cảnh báo hay thông báo quá hạn | **Không đạt** | | **BUG-07** |
+| TC-38 | Trả sách | Trả sách quá hạn → hiển thị cảnh báo quá hạn | Trả sách hoàn tất lặng lẽ, không có cảnh báo hay thông báo quá hạn | **Không đạt** | | Dev chưa tạo ra |
 | TC-39 | Tra cứu bản ghi | Member không thể xem/trả bản ghi của thành viên khác | MEM002 có thể tìm mã của MEM006 và thấy bản ghi của MEM006; nút Return vẫn truy cập được | **Không đạt** | | **BUG-08** |
 
 ---
@@ -67,13 +66,13 @@
 
 | **Chỉ số** | **Giá trị** |
 |---|---|
-| **Tổng số TC** | 39 |
-| **Đạt** | 29 |
+| **Tổng số TC** | 38 |
+| **Đạt** | 28 |
 | **Không đạt** | 10 |
 | **Bị chặn** | 0 |
 | **Chưa chạy** | 0 |
-| **Tỷ lệ đạt** | 75.0% |
-| **Số lỗi phát hiện** | 8 |
+| **Tỷ lệ đạt** | 73.7% |
+| **Số lỗi phát hiện** | 7 |
 
 ---
 
@@ -86,7 +85,7 @@
 | Tìm kiếm & lọc | 7 | 5 | 2 | 71.4% |
 | Mượn sách | 7 | 4 | 3 | 57.1% |
 | Trả sách | 3 | 2 | 1 | 66.7% |
-| Xử lý quá hạn | 4 | 3 | 1 | 75% |
+| Xử lý quá hạn | 3 | 2 | 1 | 66.7% |
 | Quản lý thành viên | 4 | 1 | 3 | 25% |
 | Tra cứu bản ghi mượn | 4 | 3 | 1 | 75% |
 

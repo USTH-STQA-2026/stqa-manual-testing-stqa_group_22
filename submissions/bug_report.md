@@ -252,7 +252,7 @@
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-07 |
-| **Related TC** | TC-38 |
+| **Related TC** | (none — TC-38 marked as 'Dev chưa tạo ra', not filed as a bug) |
 | **Related REQ** | REQ-05 |
 | **Severity** | **High** — Overdue books are returned silently with no warning; librarians and members have no visibility into late returns, undermining fine and reminder workflows |
 | **Detected By** | Phạm Vũ Khánh |

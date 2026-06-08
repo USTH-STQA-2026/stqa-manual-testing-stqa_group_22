@@ -252,7 +252,7 @@
 | **Thuộc tính** | **Chi tiết** |
 |---|---|
 | **Mã lỗi** | BUG-07 |
-| **TC liên quan** | TC-38 |
+| **TC liên quan** | (không có — TC-38 được ghi là 'Dev chưa tạo ra', không phải lỗi) |
 | **REQ liên quan** | REQ-05 |
 | **Mức độ nghiêm trọng** | **Cao** — Sách quá hạn được trả mà không có cảnh báo; Librarian và thành viên không có khả năng nhìn thấy lượt trả trễ, làm gián đoạn quy trình tiền phạt và nhắc nhở |
 | **Phát hiện bởi** | Phạm Vũ Khánh |
