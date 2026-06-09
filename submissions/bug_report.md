@@ -81,44 +81,38 @@
 
 ---
 
-## BUG-03: Borrow rejection displays the same "expired" message for both Suspended and Expired members
+## BUG-03: Borrow rejection displays incorrect "suspended" message for Expired members
 
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-03 |
-| **Related TC** | TC-17, TC-18 |
+| **Related TC** | TC-18 |
 | **Related REQ** | REQ-04 |
 | **Severity** | **Medium** — Incorrect and misleading error messages for member status; impacts operations and user support |
 | **Detected By** | Phạm Vũ Khánh |
 
 **Preconditions:**
 - Logged in as Librarian: librarian@library.com / admin123.
-- MEM004 (cu.le@email.com) — status **Suspended**.
 - MEM005 (binh.pham@email.com) — status **Expired**.
 - At least one book with **"Available"** status exists.
 
 **Reproduction Steps:**
 1. Go to **Borrow/Return** tab.
-2. Try to borrow an "Available" book for **MEM004** (Suspended). Note the error message.
-3. Try to borrow a different "Available" book for **MEM005** (Expired). Note the error message.
+2. Try to borrow an "Available" book for **MEM005** (Expired). Note the error message.
 
 **Expected Result:** Per **REQ-04**:
-- MEM004 (Suspended): rejected with a message describing **suspension** (e.g., *"Member is currently suspended. Cannot borrow books."*)
 - MEM005 (Expired): rejected with a message describing **expiry** (e.g., *"Member membership has expired. Cannot borrow books."*)
-- The two messages must be **different**, accurately reflecting `member.status`.
 
 **Actual Result:**
-- MEM004 (Suspended) receives a message like **"Member has expired…"** — **wrong reason** (should say suspended).
-- MEM005 (Expired) receives the **same "expired" message**, indistinguishable from the suspended case.
-- Neither message accurately reflects the two distinct business statuses as specified in the SRS.
+- MEM005 (Expired) receives a message like **"Member is suspended…"** — **wrong reason** (should say expired).
+- The message does not accurately reflect the member's actual business status as specified in the SRS.
 
 **Impact:** Librarians and members misunderstand the rejection reason; difficult to handle complaints correctly (renewal vs. lifting a suspension).
 
 **Evidence:**
-- TC-17: *(attach screenshot)*
 - TC-18: *(attach screenshot)*
 
-**Suggested Fix:** Separate the `if (status == suspended)` and `if (status == expired)` branches with distinct messages; do not share a single "expired" template.
+**Suggested Fix:** Ensure that the expired member status logic returns the correct expiry message; do not reuse the suspension message template.
 
 ---
 
@@ -247,43 +241,11 @@
 
 ---
 
-## BUG-07: Returning an overdue book completes silently — no overdue warning or notification is displayed
+## BUG-07: Member can search and view another member's borrow records and return books on their behalf — unauthorized access
 
 | **Attribute** | **Details** |
 |---|---|
 | **Bug ID** | BUG-07 |
-| **Related TC** | (none — TC-38 marked as 'Dev chưa tạo ra', not filed as a bug) |
-| **Related REQ** | REQ-05 |
-| **Severity** | **High** — Overdue books are returned silently with no warning; librarians and members have no visibility into late returns, undermining fine and reminder workflows |
-| **Detected By** | Phạm Vũ Khánh |
-
-**Preconditions:**
-- Logged in as Librarian: librarian@library.com / admin123.
-- "Check Overdue" has been run — BR001 (MEM002, BOOK003) has status **"Overdue"**.
-
-**Reproduction Steps:**
-1. In **Borrow/Return** tab, locate record BR001 (status "Overdue").
-2. Click **Return** on BR001.
-3. Confirm the return action.
-4. Observe the system response — look for any warning, alert, or message about the overdue status.
-
-**Expected Result:** Per **REQ-05**: when a member returns an overdue book, the system must display an overdue warning (e.g., *"This book was returned overdue — please apply the applicable late fee."*). The record status changes to "Returned" **and** the warning is shown.
-
-**Actual Result:** The return completes successfully and the record changes to "Returned", but **no overdue warning is displayed**. The overdue condition is silently ignored. There is no indication to the librarian or member that the return was late.
-
-**Impact:** Library staff have no in-system signal for late returns. Overdue fines or follow-up actions cannot be triggered from this workflow, leading to untracked late returns and potential revenue loss.
-
-**Evidence:** *(attach screenshots)*
-
-**Suggested Fix:** After a successful return, check if the record's `dueDate < returnDate`; if true, display an overdue warning before closing the return dialog. Optionally log the overdue event for reporting.
-
----
-
-## BUG-08: Member can search and view another member's borrow records and return books on their behalf — unauthorized access
-
-| **Attribute** | **Details** |
-|---|---|
-| **Bug ID** | BUG-08 |
 | **Related TC** | TC-39 |
 | **Related REQ** | REQ-08 |
 | **Severity** | **Critical** — A Member can view borrow records of any other member and perform return actions on their behalf — full access control breach |

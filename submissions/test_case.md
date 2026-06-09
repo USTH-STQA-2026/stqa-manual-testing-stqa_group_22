@@ -166,7 +166,6 @@
 |---|---|---|---|---|---|---|
 | TC-23 | Librarian checks and marks overdue records | Logged in as Librarian, BR001 has dueDate 15/09/2024 ≤ today | 1. **Borrow/Return** tab. 2. Click **Check Overdue**. 3. Look up record BR001. | Record: BR001 (MEM002, BOOK003) | BR001 changes status to **"Overdue"**. Librarian sees it in overdue list. | EP, BVA |
 | TC-24 | Member views own overdue record | Librarian ran "Check Overdue", BR001 belongs to MEM002 | 1. Log in as ba.nguyen@email.com. 2. **Borrow/Return** tab → my records. 3. Observe BR001. | Account: MEM002 | MEM002 sees BR001 with status **"Overdue"**. Cannot see other members' records. | EP |
--- removed TC-34 --
 | TC-35 | Librarian sees all overdue records across all members | Logged in as Librarian, Check Overdue already run (BR001 is Overdue) | 1. **Borrow/Return** tab. 2. Observe overdue record list or search all members. 3. Confirm records from multiple members appear. | Account: librarian@library.com | Librarian sees overdue records for **all members** (e.g., MEM002's and any other member's overdue records). Not limited to one member. | EP |
 
 ### REQ-07 — Member Management
@@ -198,8 +197,8 @@
 | Search & Filter Books | 7 | REQ-03 | EP |
 | Borrow Book | 7 | REQ-04 | EP, BVA, Decision Table |
 | Return Book | 3 | REQ-05 | EP |
-| Overdue Processing | 4 | REQ-06 | EP, BVA |
+| Overdue Processing | 3 | REQ-06 | EP, BVA |
 | Member Management | 4 | REQ-07 | EP, BVA |
 | Borrow Record Lookup | 4 | REQ-08 | EP |
-| **Total** | **39** | **REQ-01 → REQ-08** | **EP, BVA, Decision Table** |
+| **Total** | **38** | **REQ-01 → REQ-08** | **EP, BVA, Decision Table** |
  
